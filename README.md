@@ -29,6 +29,7 @@
     <div class="container">
         <h1 class="text-center">Corneile Emanuel's Resume</h1>
         <button id="saveAsPDF" class="btn btn-primary">Save as PDF</button>
+        
           <div class="header">
             <h1>Corneile Emanuel</h1>
             <p>Email: corneileemanuel@gmail.com | Phone: 14168454619</p>
@@ -125,20 +126,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
     <script>
-        $(document).ready(function () {
-    $("#saveAsPDF").click(function () {
-        var resumeContainer = document.querySelector(".container");
-        html2canvas(resumeContainer, { scale: 2, useCORS: true }).then(canvas => {
-            const imgData = canvas.toDataURL("image/jpeg", 1.0);
-            const pdf = new jsPDF("p", "mm", "a4");
-            const imgProps = pdf.getImageProperties(imgData);
-            const pdfWidth = pdf.internal.pageSize.getWidth();
-            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-            pdf.addImage(imgData, "JPEG", 0, 0, pdfWidth, pdfHeight);
-            pdf.save("resume.pdf");
+      $(document).ready(function () {
+            $("#saveAsPDF").click(async function () {
+                const resumeContainer = document.querySelector(".container");
+                const canvas = await html2canvas(resumeContainer, { scale: 2, useCORS: true });
+                const imgData = canvas.toDataURL("image/jpeg", 1.0);
+                const pdf = new jsPDF("p", "mm", "a4");
+                const imgProps = pdf.getImageProperties(imgData);
+                const pdfWidth = pdf.internal.pageSize.getWidth();
+                const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+                pdf.addImage(imgData, "JPEG", 0, 0, pdfWidth, pdfHeight);
+                pdf.save("resume.pdf");
+            });
         });
-    });
-});
 
     </script>
 </body>
