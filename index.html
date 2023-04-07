@@ -39,14 +39,12 @@
             page-break-inside: avoid;
         }
     </style>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+     
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.3/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.3/html2canvas.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
 
 </head>
 <body id="body">
@@ -159,15 +157,15 @@
 </script>
 <script>
         document.getElementById("downloadPDF").addEventListener("click", function () {
-            let content = document.getElementById("content");
-            html2canvas(content).then(function (canvas) {
-                let imgData = canvas.toDataURL("image/png");
-                let doc = new jsPDF("p", "mm", "a4");
-                let imgProps = doc.getImageProperties(imgData);
-                let pdfWidth = doc.internal.pageSize.getWidth();
-                let pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-                doc.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
-                doc.save("resume.pdf");
+            const content = document.getElementById("content");
+            const pdf = new jsPDF("p", "mm", "a4");
+
+            pdf.html(content, {
+                callback: function (doc) {
+                    doc.save("resume.pdf");
+                },
+                x: 10,
+                y: 10
             });
         });
     </script>
