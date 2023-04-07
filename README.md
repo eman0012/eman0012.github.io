@@ -42,9 +42,9 @@
 
         <div class="education">
             <h2 class="section-title">Education</h2>
-            <p class="job-title">Algonquin College</p>
+            <h3 class="job-title">Algonquin College :</h3>
             <p>Computer Programming - Ontario College Diploma (2020 - current)</p>
-            <p class="job-title">Sir Arthur Lewis Community College</p>
+            <h3 class="job-title">Sir Arthur Lewis Community College :</h3>
             <p>Math and Chemistry - Cambridge A-Level Certificate (1996-1998)</p>
         </div>
 
