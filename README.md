@@ -129,7 +129,7 @@
             $("#saveAsPDF").click(function () {
                 var resumeContainer = document.querySelector(".container");
                 html2canvas(resumeContainer).then(canvas => {
-                    const imgData = canvas.toDataURL("image/png");
+                    const imgData = canvas.toDataURL("image/jpeg", 1.0);
                     const pdf = new jsPDF();
                     pdf.addImage(imgData, "PNG", 0, 0);
                     pdf.save("resume.pdf");
