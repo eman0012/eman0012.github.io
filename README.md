@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>John Doe's Resume</title>
+    <title>Corneile Emanuel's Resume</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
@@ -29,8 +29,8 @@
         <button id="saveAsPDF" class="btn btn-primary">Save as PDF</button>
           <div class="header">
             <h1>John Doe</h1>
-            <p>Email: Johndoe@email.com | Phone: 14168451000</p>
-            <p>GitHub: <a href="https://github.com/eman0012">https://github.com/eman0012</a> | Website: <a href="https://johndoe.com">johndoe.com</a></p>
+            <p>Email: corneileemanuel@gmail.com | Phone: 14168454619</p>
+            <p>GitHub: <a href="https://github.com/eman0012">https://github.com/eman0012</a> | Website: <a href="https://eman0012.github.io">eman0012.github.io</a></p>
         </div>
 
         <div class="objective">
