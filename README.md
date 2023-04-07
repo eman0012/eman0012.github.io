@@ -126,16 +126,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
     <script>
         $(document).ready(function () {
-            $("#saveAsPDF").click(function () {
-                var resumeContainer = document.querySelector(".container");
-                html2canvas(resumeContainer).then(canvas => {
-                    const imgData = canvas.toDataURL("image/jpeg", 1.0);
-                    const pdf = new jsPDF();
-                    pdf.addImage(imgData, "PNG", 0, 0);
-                    pdf.save("resume.pdf");
-                });
-            });
+    $("#saveAsPDF").click(function () {
+        var resumeContainer = document.querySelector(".container");
+        html2canvas(resumeContainer, { scale: 2, useCORS: true }).then(canvas => {
+            const imgData = canvas.toDataURL("image/jpeg", 1.0);
+            const pdf = new jsPDF("p", "mm", "a4");
+            const imgProps = pdf.getImageProperties(imgData);
+            const pdfWidth = pdf.internal.pageSize.getWidth();
+            const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+            pdf.addImage(imgData, "JPEG", 0, 0, pdfWidth, pdfHeight);
+            pdf.save("resume.pdf");
         });
+    });
+});
+
     </script>
 </body>
 </html>
