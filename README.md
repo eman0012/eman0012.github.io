@@ -25,10 +25,10 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="text-center">John Doe's Resume</h1>
+        <h1 class="text-center">Corneile Emanuel's Resume</h1>
         <button id="saveAsPDF" class="btn btn-primary">Save as PDF</button>
           <div class="header">
-            <h1>John Doe</h1>
+            <h1>Corneile Emanuel</h1>
             <p>Email: corneileemanuel@gmail.com | Phone: 14168454619</p>
             <p>GitHub: <a href="https://github.com/eman0012">https://github.com/eman0012</a> | Website: <a href="https://eman0012.github.io">eman0012.github.io</a></p>
         </div>
