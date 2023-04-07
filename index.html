@@ -23,6 +23,12 @@
         .section-title {
             margin-bottom: 20px;
         }
+         
+          @media print {
+            button {
+                display: none;
+            }
+        }
     </style>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 
@@ -31,6 +37,7 @@
     <div class="container">
         <h1 class="text-center">Corneile Emanuel's Resume</h1>
         <button id="saveAsPDF" class="btn btn-primary">Save as PDF</button>
+          <button id="printResume" class="btn btn-primary">Print</button>
         
           <div class="header">
             <h1>Corneile Emanuel</h1>
@@ -122,26 +129,15 @@
     </div>
     </div>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://unpkg.com/jspdf-autotable"></script>
     <script>
         $(document).ready(function () {
-            $("#saveAsPDF").click(function () {
-                const pdf = new jsPDF("p", "pt", "a4");
-                pdf.html($(".container")[0], {
-                    callback: function (pdf) {
-                        pdf.save("resume.pdf");
-                    },
-                    x: 0,
-                    y: 0,
-                });
+            $("#printResume").click(function () {
+                window.print();
             });
         });
-
-
     </script>
 </body>
 </html>
