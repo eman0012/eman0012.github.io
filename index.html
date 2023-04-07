@@ -33,7 +33,7 @@
      <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
 
 </head>
-<body>
+<body id="body">
     <div class="container">
         <h1 class="text-center">Corneile Emanuel's Resume</h1>
         <button id="saveAsPDF" class="btn btn-primary">Save as PDF</button>
@@ -134,6 +134,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdnjse.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
 
     <script>
         $(document).ready(function () {
@@ -143,28 +144,12 @@
         });
     </script>
 <script>
-     $(document).ready(function () {
-    $("#saveAsPDF").click(async function () {
-        const resumeContainer = document.querySelector(".container");
-        domtoimage.toPng(resumeContainer, { bgcolor: '#fff' })
-            .then(function (dataUrl) {
-                const img = new Image();
-                img.src = dataUrl;
-                img.onload = function () {
-                    const pdf = new jsPDF("p", "mm", "a4");
-                    const imgProps = pdf.getImageProperties(img);
-                    const pdfWidth = pdf.internal.pageSize.getWidth();
-                    const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-                    pdf.addImage(img, 'PNG', 0, 0, pdfWidth, pdfHeight);
-                    pdf.save("resume.pdf");
-                };
-            })
-            .catch(function (error) {
-                console.error('Error generating PDF:', error);
-            });
-    });
-});
+   <script>
+  document.getElementById("saveAsPDF").addEventListener("click", function() {
+    const element = document.getElementById("body");
+    html2pdf().from(element).save("resume.pdf");
+  });
+</script>
 
-     </script>
 </body>
 </html>
