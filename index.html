@@ -45,17 +45,18 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-alpha1/html2canvas.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
 
 </head>
 <body id="body">
-    <div class="container">
+    <div class="container" id="content">
         <h1 class="text-center">Corneile Emanuel's Resume</h1>
         <button id="saveAsPDF" class="btn btn-primary">Save as PDF</button>
+         <button id="downloadPDF">Download PDF</button>
          <button id="printResume" class="btn btn-primary">Print</button>
         
-          <div class="header">
-            <h1>Corneile Emanuel</h1>
+          <div class="header"
             <p>Email: corneileemanuel@gmail.com | Phone: 14168454619</p>
             <p>GitHub: <a href="https://github.com/eman0012">https://github.com/eman0012</a> | Website: <a href="https://eman0012.github.io">eman0012.github.io</a></p>
         </div>
@@ -156,6 +157,20 @@
     html2pdf().from(element).save("resume.pdf");
   });
 </script>
+<script>
+        document.getElementById("downloadPDF").addEventListener("click", function () {
+            let content = document.getElementById("content");
+            html2canvas(content).then(function (canvas) {
+                let imgData = canvas.toDataURL("image/png");
+                let doc = new jsPDF("p", "mm", "a4");
+                let imgProps = doc.getImageProperties(imgData);
+                let pdfWidth = doc.internal.pageSize.getWidth();
+                let pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+                doc.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+                doc.save("resume.pdf");
+            });
+        });
+    </script>
 
 </body>
 </html>
