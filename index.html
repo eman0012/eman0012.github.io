@@ -158,17 +158,14 @@
     html2pdf().from(element).save("resume.pdf");
   });
 </script>
-<script>
+  <script>
         document.getElementById("downloadPDF").addEventListener("click", function () {
             const content = document.getElementById("content");
-            const pdf = new jsPDF("p", "mm", "a4");
-
-            pdf.html(content, {
-                callback: function (doc) {
-                    doc.save("resume.pdf");
-                },
-                x: 10,
-                y: 10
+            html2canvas(content).then((canvas) => {
+                const imgData = canvas.toDataURL("image/png");
+                const pdf = new jspdf.jsPDF();
+                pdf.addImage(imgData, "PNG", 0, 0);
+                pdf.save("resume.pdf");
             });
         });
     </script>
