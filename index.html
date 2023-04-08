@@ -160,15 +160,18 @@
 </script> 
 
   <script>
-        document.getElementById("downloadPDF").addEventListener("click", function () {
-            const content = document.getElementById("content");
-            html2canvas(content).then((canvas) => {
-                const imgData = canvas.toDataURL("image/png");
-                const pdf = new jspdf.jsPDF();
-                pdf.addImage(imgData, "PNG", 0, 0);
-                pdf.save("resume.pdf");
-            });
-        });
+       document.getElementById("downloadPDF").addEventListener("click", function() {
+    const element = document.getElementById("content");
+    const opt = {
+        margin: [1, 1, 1, 1],
+        filename: 'resume.pdf',
+        image: { type: 'jpeg', quality: 1 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+    html2pdf().set(opt).from(element).save();
+});
+
     </script>
 
 </body>
